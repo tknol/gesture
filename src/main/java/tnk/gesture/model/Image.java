@@ -1,5 +1,7 @@
 package tnk.gesture.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -9,11 +11,17 @@ import java.util.Set;
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
 
     private String name;
     private String path;
+    @Lob
+    private byte[] imageData;
+
+    @ManyToOne
+    private User user;
 
     @ManyToMany(mappedBy = "images")
     private Set<Tag> tags = new HashSet<>();
@@ -86,5 +94,21 @@ public class Image {
                 ", path='" + path + '\'' +
                 ", tags=" + tags +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 }
