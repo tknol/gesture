@@ -8,8 +8,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
+import tnk.gesture.converters.ImageCommandToImageConverter;
+import tnk.gesture.converters.ImageToImageCommandConverter;
 import tnk.gesture.model.Image;
 import tnk.gesture.repositories.ImageRepository;
+import tnk.gesture.repositories.UserRepository;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -26,12 +29,14 @@ public class ImageServiceImplTest {
 
     @Mock private ImageRepository imageRepository;
     private ImageService imageService;
-
+    @Mock private ImageCommandToImageConverter imageCommandToImageConverter;
+    @Mock private UserRepository userRepository;
+    @Mock private ImageToImageCommandConverter imageToImageCommandConverter;
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        imageService = new ImageServiceImpl(imageRepository);
+        imageService = new ImageServiceImpl(imageRepository, imageCommandToImageConverter, userRepository, imageToImageCommandConverter);
     }
 
     @Test
