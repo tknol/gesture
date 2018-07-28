@@ -21,7 +21,7 @@ public class Image {
 
     private String name;
     private String path;
-    private byte[] imageData;
+    private Byte[] imageData;
     private User user;
     private Set<Tag> tags = new HashSet<>();
 
@@ -71,11 +71,11 @@ public class Image {
         this.user = user;
     }
 
-    public byte[] getImageData() {
+    public Byte[] getImageData() {
         return imageData;
     }
 
-    public void setImageData(byte[] imageData) {
+    public void setImageData(Byte[] imageData) {
         this.imageData = imageData;
     }
 }
