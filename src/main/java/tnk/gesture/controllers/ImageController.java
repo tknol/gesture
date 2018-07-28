@@ -3,10 +3,12 @@ package tnk.gesture.controllers;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tnk.gesture.commands.ImageCommand;
 import tnk.gesture.constants.Mappings;
+import tnk.gesture.model.User;
 import tnk.gesture.services.ImageService;
 import tnk.gesture.services.UserService;
 import javax.servlet.http.HttpServletResponse;
@@ -17,18 +19,17 @@ import java.io.InputStream;
 public class ImageController {
 
     private ImageService imageService;
-    private UserService userService;
 
-    public ImageController(ImageService imageService,
-                           UserService userService) {
+    public ImageController(ImageService imageService) {
         this.imageService = imageService;
-        this.userService = userService;
     }
 
     @GetMapping("/" + Mappings.IMAGES)
-    public String getImages(Model model){
+    public String getImages(@ModelAttribute("user") final User user,
+                            final BindingResult mapping1BindingResult,
+                            final Model model){
 
-        model.addAttribute("images", imageService.findAll());
+        model.addAttribute("user", user);
 
         return Mappings.IMAGES;
     }
