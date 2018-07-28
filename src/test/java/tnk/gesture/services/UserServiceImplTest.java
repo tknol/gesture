@@ -9,12 +9,11 @@ import tnk.gesture.model.User;
 import tnk.gesture.repositories.UserRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
 
@@ -40,5 +39,20 @@ public class UserServiceImplTest {
 
         assertEquals(1, Iterables.size(users));
         verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void findById() throws Exception {
+        User user = new User();
+        user.setId("abc");
+        Optional<User> recipeOptional = Optional.of(user);
+
+        when(userRepository.findById(anyString())).thenReturn(recipeOptional);
+
+        User recipeReturned = userService.findById("abc");
+
+        assertNotNull("Null user returned", recipeReturned);
+        verify(userRepository, times(1)).findById(anyString());
+        verify(userRepository, never()).findAll();
     }
 }

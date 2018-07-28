@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface UserService {
     Iterable<User> getUsers();
+    User findById(String id) throws Exception;
 }
