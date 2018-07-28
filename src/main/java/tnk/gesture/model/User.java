@@ -6,21 +6,14 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 public class User {
     private String userName;
     private String firstName;
     private String lastName;
     private String password;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Image> images;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Tag> tags;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private Long id;
+    private String id;
 
     public User() {
         images = new HashSet<>();
@@ -67,11 +60,11 @@ public class User {
         this.tags = tags;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

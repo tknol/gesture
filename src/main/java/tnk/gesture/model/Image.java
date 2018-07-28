@@ -7,23 +7,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
 public class Image {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private Long id;
-
+    private String id;
     private String name;
     private String path;
-    @Lob
     private byte[] imageData;
-
-    @ManyToOne
     private User user;
-
-    @ManyToMany(mappedBy = "images")
     private Set<Tag> tags = new HashSet<>();
 
     public Image(){
@@ -64,11 +54,11 @@ public class Image {
         this.tags = tags;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
