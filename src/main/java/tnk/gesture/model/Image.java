@@ -1,9 +1,11 @@
 package tnk.gesture.model;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,6 +18,7 @@ public class Image {
 
     @Id
     private String id = UUID.randomUUID().toString();
+
     private String name;
     private String path;
     private byte[] imageData;
@@ -23,7 +26,6 @@ public class Image {
     private Set<Tag> tags = new HashSet<>();
 
     public Image(){
-        this.tags = new HashSet<>();
     }
 
     public Image(String name, String path){
