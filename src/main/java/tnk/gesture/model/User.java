@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,14 +16,12 @@ import java.util.Set;
 public class User {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String userName;
     private String firstName;
     private String lastName;
     private String password;
-    @DBRef
     private Set<Image> images;
-    @DBRef
     private Set<Tag> tags;
 
     public User() {

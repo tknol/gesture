@@ -20,9 +20,7 @@ public class Tag {
 
     private String name;
     private String description;
-    @DBRef
     private User user;
-    @DBRef
     private Set<Image> images = new HashSet<>();
 
     public Tag(){
