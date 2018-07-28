@@ -16,36 +16,52 @@
     <title>Gesture Home</title>
 </head>
 <body>
-<h1 th:text="${user.userName}"></h1>
-<h2>Images</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Tags</th>
-    </tr>
-    <tr th:each="image : ${user.images}">
-        <td th:text="${image.id}"></td>
-        <td th:text="${image.name}"></td>
-        <td>
-            <span th:each="tag : ${image.tags}">
-                <span th:text="${tag.name}"></span>
-            </span>
-        </td>
-    </tr>
-</table>
-<h2>Tags</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    <tr th:each="tag : ${user.tags}">
-        <td th:text="${tag.id}"></td>
-        <td th:text="${tag.name}"></td>
-        <td th:text="${tag.description}"></td>
-    </tr>
-</table>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="pannel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title" th:text="${user.userName}">User Name!</h1>
+                        </div>
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Images</h2>
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Tags</th>
+                                </tr>
+                                <tr th:each="image : ${user.images}">
+                                    <td th:text="${image.id}"></td>
+                                    <td th:text="${image.name}"></td>
+                                    <td>
+                                        <span th:each="tag : ${image.tags}">
+                                            <span th:text="${tag.name}"></span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Tags</h2>
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr th:each="tag : ${user.tags}">
+                                    <td th:text="${tag.id}"></td>
+                                    <td th:text="${tag.name}"></td>
+                                    <td th:text="${tag.description}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
