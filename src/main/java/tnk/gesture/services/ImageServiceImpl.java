@@ -21,6 +21,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public Iterable<Image> findAll() {
+        return imageRepository.findAll();
+    }
+
+    @Override
     @Transactional
     public void saveImageFile(String imageId, MultipartFile file) {
 

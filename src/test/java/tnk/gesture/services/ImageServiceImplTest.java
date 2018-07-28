@@ -1,5 +1,6 @@
 package tnk.gesture.services;
 
+import com.google.common.collect.Iterables;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -11,7 +12,9 @@ import tnk.gesture.model.Image;
 import tnk.gesture.repositories.ImageRepository;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -54,5 +57,19 @@ public class ImageServiceImplTest {
         verify(imageRepository, times(1)).save(argumentCaptor.capture());
         Image savedImage = argumentCaptor.getValue();
         assertEquals(multipartFile.getBytes().length, savedImage.getImageData().length);
+    }
+
+    @Test
+    public void testFindAll(){
+
+        Set<Image> imageData = new HashSet<>();
+        imageData.add(new Image());
+        when(imageRepository.findAll()).thenReturn(imageData);
+
+        Iterable<Image> all = imageService.findAll();
+
+        assertEquals(1, Iterables.size(all));
+        verify(imageRepository, times(1)).findAll();
+
     }
 }
