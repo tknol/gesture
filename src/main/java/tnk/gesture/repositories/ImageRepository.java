@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 import tnk.gesture.model.Image;
 
 @Component
-public interface ImageRepository extends CrudRepository<Image, Long> {
+public interface ImageRepository extends CrudRepository<Image, String> {
 }
