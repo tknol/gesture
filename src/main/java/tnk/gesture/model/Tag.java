@@ -19,25 +19,12 @@ public class Tag {
     private String id = UUID.randomUUID().toString();
 
     private String name;
-    private String description;
     private User user;
     private Set<Image> images = new HashSet<>();
 
     public Tag(){
         this.images = new HashSet<>();
     }
-
-    public Tag(String name, String description){
-        this.name = name;
-        this.description = description;
-    }
-
-    public Tag(String name, String description, Set<Image> images){
-        this.name = name;
-        this.description = description;
-        this.images = images;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -58,7 +45,6 @@ public class Tag {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", images=" + images +
                 '}';
     }
