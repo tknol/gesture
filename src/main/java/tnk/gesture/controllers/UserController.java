@@ -5,21 +5,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tnk.gesture.model.User;
 import tnk.gesture.repositories.UserRepository;
+import tnk.gesture.services.UserService;
 
 @Controller
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String getUser(Model model){
-        Iterable<User> all = userRepository.findAll();
+    public String getUser(Model model) throws Exception {
+        Iterable<User> all = userService.getUsers();
 
-        model.addAttribute("user", all.iterator().next());
+        if(!all.iterator().hasNext())
+            throw new Exception("User not found"); // todo tnk fix this
+
+            model.addAttribute("user", all.iterator().next());
 
         return "index";
     }
