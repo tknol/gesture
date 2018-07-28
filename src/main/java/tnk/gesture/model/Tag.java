@@ -1,19 +1,28 @@
 package tnk.gesture.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
+@Getter
+@Setter
+@Document
 public class Tag {
 
-    private String id;
+    @Id
+    private String id = UUID.randomUUID().toString();
 
     private String name;
     private String description;
+    @DBRef
     private User user;
+    @DBRef
     private Set<Image> images = new HashSet<>();
 
     public Tag(){
@@ -31,37 +40,6 @@ public class Tag {
         this.images = images;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {
