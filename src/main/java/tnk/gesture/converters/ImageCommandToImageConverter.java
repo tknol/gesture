@@ -6,9 +6,19 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import tnk.gesture.commands.ImageCommand;
 import tnk.gesture.model.Image;
+import tnk.gesture.model.Tag;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class ImageCommandToImageConverter implements Converter<ImageCommand, Image> {
+
+    private StringToTagConverter stringToTagConverter;
+
+    public ImageCommandToImageConverter(StringToTagConverter stringToTagConverter) {
+        this.stringToTagConverter = stringToTagConverter;
+    }
 
     @Synchronized
     @Nullable
@@ -16,7 +26,14 @@ public class ImageCommandToImageConverter implements Converter<ImageCommand, Ima
     public Image convert(ImageCommand source) {
         final Image image = new Image();
         image.setName(source.getName());
-
+        if(!source.getTags().isEmpty()) {
+            List<String> tags = Arrays.asList(source.getTags().split(","));
+            for (String tagName : tags) {
+                Tag tag = stringToTagConverter.convert(tagName);
+                tag.getImages().add(image);
+                image.getTags().add(tag);
+            }
+        }
         return image;
     }
 }
