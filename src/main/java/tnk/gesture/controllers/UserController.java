@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping({"", "/", "/index"})
+    @GetMapping({"", "/", "/index"})
     public String getUser(Model model) throws Exception {
         Iterable<User> all = userService.getUsers();
 
@@ -29,7 +29,7 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping("viewimages")
+    @GetMapping("viewimages")
     public String getImages(Model model, final RedirectAttributes redirectAttributes) throws Exception {
         Iterable<User> all = userService.getUsers();
 
