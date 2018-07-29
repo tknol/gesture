@@ -38,12 +38,13 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         one.getTags().add(nude);
         two.getTags().add(figure);
 
-        user.getImages().add(one);
-        user.getImages().add(two);
+
+        //user.getImages().add(one);
+        //user.getImages().add(two);
 
         userRepository.save(user);
-        imageRepository.save(one);
-        imageRepository.save(two);
+//        imageRepository.save(one);
+//        imageRepository.save(two);
         tagRepository.save(figure);
         tagRepository.save(nude);
 
