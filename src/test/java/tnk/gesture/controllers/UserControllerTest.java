@@ -27,8 +27,6 @@ public class UserControllerTest {
     private UserController userController;
     @Mock private UserService userService;
     @Mock Model model;
-    @Mock
-    RedirectAttributes redirectAttributes;
 
     @Before
     public void setUp(){
@@ -39,19 +37,19 @@ public class UserControllerTest {
     @Test
     public void getUser() throws Exception {
         //todo fixme
-//        //given
-//        Iterable<User> users = new ArrayList<>();
-//        ((ArrayList<User>) users).add(new User());
-//        ((ArrayList<User>) users).add(new User());
-//
-//        //when
-//        when(userService.getUsers()).thenReturn(users);
-//        String result = userController.getUser(model, redirectAttributes);
-//
-//        //then
-//        assertEquals("index", result);
-//        verify(userService, times(1)).getUsers();
-//        verify(model, times(1)).addAttribute("user", users.iterator().next());
+        //given
+        Iterable<User> users = new ArrayList<>();
+        ((ArrayList<User>) users).add(new User());
+        ((ArrayList<User>) users).add(new User());
+
+        //when
+        when(userService.getUsers()).thenReturn(users);
+        String result = userController.getUser(model);
+
+        //then
+        assertEquals("index", result);
+        verify(userService, times(1)).getUsers();
+        verify(model, times(1)).addAttribute("user", users.iterator().next());
     }
 
     @Test
