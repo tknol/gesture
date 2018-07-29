@@ -36,7 +36,6 @@ public class UserControllerTest {
 
     @Test
     public void getUser() throws Exception {
-        //todo fixme
         //given
         Iterable<User> users = new ArrayList<>();
         ((ArrayList<User>) users).add(new User());
