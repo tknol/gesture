@@ -11,7 +11,7 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
     <meta charset="UTF-8">
-    <title>Schedules</title>
+    <title>New Schedule</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -26,13 +26,13 @@
                 <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="practice">Practice</a>
+                <a class="nav-link" href="practice">Practice</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="viewimages">Images</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="viewschedules">Schedules</a>
+                <a class="nav-link active" href="viewschedules">Schedules</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="viewtags">Tags</a>
@@ -46,6 +46,25 @@
         </div>
     </div>
 </nav>
-
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3>
+                            Welcome
+                            <small class="text-muted" th:text="${user.firstName}">with muted text</small>
+                        </h3>
+                        <div>
+                            <a class="btn btn-primary" href="#" th:href="@{${user.id} + '/image/new'}" role="button">New Image</a>
+                            <a class="btn btn-primary" href="#" th:href="@{${user.id} + '/schedule/new'}" role="button">New Schedule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

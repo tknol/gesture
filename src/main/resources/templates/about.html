@@ -11,7 +11,7 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
     <meta charset="UTF-8">
-    <title>About</title>
+    <title>About Gesture</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -22,7 +22,7 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -32,13 +32,13 @@
                 <a class="nav-link" href="viewimages">Images</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="schedules/viewschedules">Schedules</a>
+                <a class="nav-link" href="viewschedules">Schedules</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tags/viewtags">Tags</a>
+                <a class="nav-link" href="viewtags">Tags</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="about">About</a>
+                <a class="nav-link" href="about">About</a>
             </li>
         </ul>
         <div class="panel-heading">
@@ -46,6 +46,28 @@
         </div>
     </div>
 </nav>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
 
+                        <div>
+                            <h3>
+                                About Gesture
+                            </h3>
+                            <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                            <p><small>This line of text is meant to be treated as fine print.</small></p>
+                            <p>The following is <strong>rendered as bold text</strong>.</p>
+                            <p>The following is <em>rendered as italicized text</em>.</p>
+                            <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
