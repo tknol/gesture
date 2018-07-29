@@ -45,8 +45,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         userRepository.save(user);
 //        imageRepository.save(one);
 //        imageRepository.save(two);
-        tagRepository.save(figure);
-        tagRepository.save(nude);
+//        tagRepository.save(figure);
+//        tagRepository.save(nude);
 
 
 
