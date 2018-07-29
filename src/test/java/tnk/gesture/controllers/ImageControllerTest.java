@@ -4,7 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tnk.gesture.commands.ImageCommand;
 import tnk.gesture.constants.Mappings;
@@ -17,7 +22,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -30,52 +37,66 @@ public class ImageControllerTest {
 
     private ImageController imageController;
     @Mock
-    ImageService imageService;
+    private ImageService imageService;
     @Mock
-    UserService userService;
+    private Model model;
     @Mock
-    Model model;
-    @Mock
-    RedirectAttributes redirectAttributes;
-
+    private BindingResult bindingResult;
+    private MockMvc mockMvc;
+    @Mock MultipartFile file;
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
         imageController = new ImageController(imageService);
+        mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
     }
     @Test
     public void getImages() {
 
-        Iterable<Image> imageData = new ArrayList<>();
-        ((ArrayList<Image>) imageData).add(new Image());
+        User user = new User();
+
+        String images = imageController.getImages(user, bindingResult, model);
 
 
-        when(imageService.findAll()).thenReturn(imageData);
-
-       // String images = imageController.getImages(model, );
-
-        //assertEquals(Mappings.IMAGES, images);
-        verify(imageService).findAll();
-        verify(model, times(1)).addAttribute("images", imageData);
+        assertEquals(Mappings.IMAGES, images);
+        verify(model, times(1)).addAttribute("user", user);
     }
 
+
     @Test
-    public void createImage() {
+    public void createImage() throws Exception {
         //given
         ImageCommand imageCommand = new ImageCommand();
         imageCommand.setId("abc");
-//todo fixme
+        User user = new User();
+        user.setId("abc");
+
         //when
-        //when(recipeService.findRecipeCommandById(anyLong())).thenReturn(imageCommand);
+        String result = imageController.createImage(user.getId(), model);
 
         //then
-//        mockMvc.perform(get("/recipe/1/ingredient/new"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("recipe/ingredient/ingredientform"))
-//                .andExpect(model().attributeExists("ingredient"))
-//                .andExpect(model().attributeExists("uomList"));
-//
-//        verify(recipeService, times(1)).findRecipeCommandById(anyLong());
+        assertEquals("imageform", result);
+        verify(model, times(1)).addAttribute(anyString(), any(ImageCommand.class));
 
     }
+
+//
+//    @Test
+//    public void createImage() throws Exception {
+//        //given
+//        ImageCommand imageCommand = new ImageCommand();
+//        imageCommand.setId("abc");
+//        User user = new User();
+//        user.setId("abc");
+//
+//        //when
+//        when(imageService.saveImage(imageCommand, file)).thenReturn(imageCommand);
+//        String result = imageController.createImage(user.getId(), model);
+//
+//        //then
+//        assertEquals("redirect:/index", result);
+//        verify(userService, times(1)).getUsers();
+//        verify(model, times(1)).addAttribute("user", users.iterator().next());
+//
+//    }
 }
