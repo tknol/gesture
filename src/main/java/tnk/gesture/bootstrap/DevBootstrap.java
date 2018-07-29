@@ -7,32 +7,70 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import tnk.gesture.model.Image;
 import tnk.gesture.model.Tag;
+import tnk.gesture.model.User;
 import tnk.gesture.repositories.ImageRepository;
 import tnk.gesture.repositories.TagRepository;
+import tnk.gesture.repositories.UserRepository;
 
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
+    @Autowired private UserRepository userRepository;
+        @Autowired private TagRepository tagRepository;
     @Autowired private ImageRepository imageRepository;
-    @Autowired private TagRepository tagRepository;
 
     public void initData(){
+
+        User user = new User();
+        user.setUserName("tnk");
+        user.setFirstName("Tom");
+        user.setLastName("Knol");
+
         Image one = new Image("one", "one");
         Image two = new Image("two", "one");
-        Tag figure = new Tag("figure", "figure");
-        Tag nude = new Tag("nude", "nude");
+        Tag figure = new Tag();
+        figure.setName("figure");
+        Tag nude = new Tag();
+        nude.setName("nude");
+        user.getTags().add(figure);
+        user.getTags().add(nude);
         one.getTags().add(figure);
         one.getTags().add(nude);
         two.getTags().add(figure);
-        figure.getImages().add(one);
-        figure.getImages().add(two);
-        nude.getImages().add(one);
 
+        user.getImages().add(one);
+        user.getImages().add(two);
+
+        userRepository.save(user);
         imageRepository.save(one);
         imageRepository.save(two);
-        tagRepository.save(nude);
         tagRepository.save(figure);
+        tagRepository.save(nude);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        figure.getImages().add(one);
+//        figure.getImages().add(two);
+//        nude.getImages().add(one);
+
+
+//        imageRepository.save(two);
+//        tagRepository.save(nude);
+//        tagRepository.save(figure);
     }
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {

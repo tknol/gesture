@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 import tnk.gesture.model.Tag;
 
 @Component
-public interface TagRepository extends CrudRepository<Tag, Long> {
+public interface TagRepository extends CrudRepository<Tag, String> {
 }

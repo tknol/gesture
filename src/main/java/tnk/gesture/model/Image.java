@@ -1,29 +1,28 @@
 package tnk.gesture.model;
 
-import org.hibernate.annotations.GenericGenerator;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
-@Entity
+@Getter
+@Setter
+@Document
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private Long id;
+    private String id = UUID.randomUUID().toString();
 
     private String name;
     private String path;
-    @Lob
-    private byte[] imageData;
-
-    @ManyToOne
+    private Byte[] imageData;
     private User user;
-
-    @ManyToMany(mappedBy = "images")
     private Set<Tag> tags = new HashSet<>();
 
     public Image(){
@@ -38,38 +37,6 @@ public class Image {
         this.name = name;
         this.path = path;
         this.tags = tags;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Set<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -104,11 +71,11 @@ public class Image {
         this.user = user;
     }
 
-    public byte[] getImageData() {
+    public Byte[] getImageData() {
         return imageData;
     }
 
-    public void setImageData(byte[] imageData) {
+    public void setImageData(Byte[] imageData) {
         this.imageData = imageData;
     }
 }

@@ -1,73 +1,29 @@
 package tnk.gesture.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
-@Entity
+@Getter
+@Setter
+@Document
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private Long id;
+    private String id = UUID.randomUUID().toString();
 
     private String name;
-    private String description;
-
-    @ManyToOne
     private User user;
-
-    @ManyToMany
-    @JoinTable(name = "image_tag", joinColumns = @JoinColumn(name = "tag_id"), inverseJoinColumns = @JoinColumn(name="image_id"))
     private Set<Image> images = new HashSet<>();
 
-    public Tag(){}
-
-    public Tag(String name, String description){
-        this.name = name;
-        this.description = description;
-    }
-
-    public Tag(String name, String description, Set<Image> images){
-        this.name = name;
-        this.description = description;
-        this.images = images;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Tag(){
+        this.images = new HashSet<>();
     }
 
     @Override
@@ -89,7 +45,6 @@ public class Tag {
         return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", images=" + images +
                 '}';
     }
