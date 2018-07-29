@@ -56,23 +56,29 @@
                             <a class="btn btn-primary" href="#" th:href="@{${user.id} + '/image/new'}" role="button">New Image</a>
                         </div>
                     </div>
-                    <div class="panel-body" th:each="image : ${user.images}">
-                        <div class="card border-primary mb-3" style="max-width: 20rem;">
-                            <div class="card-header right"><button type="button" class="btn btn-outline-info">Edit</button></div>
-                            <div class="card-body">
-                                <h4 class="card-title" th:text="${image.name}">Image Name</h4>
-                                <span class="thumbnail">
-                                        <img class="thumbnail" src="../../static/images/guacamole400x400WithX.jpg"
-                                             th:src="@{${image.id} + '/image'}">
-                                    </span>
-                                <small>
-                                    <div>
-                                            <span th:each="tag : ${image.tags}">
-                                                <span th:text="${tag.name}">tag1 tag2 tag3</span>
-                                            </span>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm" th:each="image : ${user.images}">
+                                <div class="panel-body" >
+                                    <div class="card border-primary mb-3" style="max-width: 20rem;">
+                                        <div class="card-header right"><button type="button" class="btn btn-outline-info">Edit</button></div>
+                                        <div class="card-body ">
+                                            <h4 class="card-title" th:text="${image.name}">Image Name</h4>
+                                            <span class="thumbnail">
+                                                    <img class="thumbnail" src="../../static/images/guacamole400x400WithX.jpg"
+                                                         th:src="@{${image.id} + '/image'}">
+                                                </span>
+                                            <small>
+                                                <div>
+                                                        <span th:each="tag : ${image.tags}">
+                                                            <span th:text="${tag.name}">tag1 tag2 tag3</span>
+                                                        </span>
+                                                </div>
+                                                <button type="button" class="btn btn-link btn-sm">Add Tag</button>
+                                            </small>
+                                        </div>
                                     </div>
-                                    <button type="button" class="btn btn-link btn-sm">Add Tag</button>
-                                </small>
+                                </div>
                             </div>
                         </div>
                     </div>
