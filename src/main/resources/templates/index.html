@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
     <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
@@ -13,55 +14,57 @@
     <title>Gesture Home</title>
 </head>
 <body>
-    <div class="container-fluid" style="margin-top: 20px">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="pannel-group">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title" th:text="${user.userName}">User Name!</h1>
-                        </div>
-                        <div class="panel-heading">
-                            <h2 class="panel-title">Images</h2>
-                            <div class="col-md-1">
-                                <a class="btn btn-default" href="#" th:href="@{${user.id} + '/image/new'}" role="button">New</a>
-                            </div>
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Tags</th>
-                                </tr>
-                                <tr th:each="image : ${user.images}">
-                                    <td th:text="${image.id}"></td>
-                                    <td th:text="${image.name}"></td>
-                                    <td>
-                                        <span th:each="tag : ${image.tags}">
-                                            <span th:text="${tag.name}"></span>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="panel-heading">
-                            <h2 class="panel-title">Tags</h2>
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                </tr>
-                                <tr th:each="tag : ${user.tags}">
-                                    <td th:text="${tag.id}"></td>
-                                    <td th:text="${tag.name}"></td>
-                                    <td th:text="${tag.description}"></td>
-                                </tr>
-                            </table>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Gesture</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="practice">Practice</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="viewimages">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="schedules/viewschedules">Schedules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tags/viewtags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about">About</a>
+            </li>
+        </ul>
+        <div class="panel-heading">
+            <small class="text-muted" th:text="${user.userName}"> You are logged in as User Name!</small>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3>
+                            Welcome
+                            <small class="text-muted" th:text="${user.firstName}">with muted text</small>
+                        </h3>
+                        <div>
+                            <a class="btn btn-primary" href="#" th:href="@{${user.id} + '/image/new'}" role="button">New Image</a>
+                            <a class="btn btn-primary" href="#" th:href="@{${user.id} + '/schedule/new'}" role="button">New Schedule</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
