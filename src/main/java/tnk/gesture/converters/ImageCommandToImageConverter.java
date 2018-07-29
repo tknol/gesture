@@ -30,7 +30,7 @@ public class ImageCommandToImageConverter implements Converter<ImageCommand, Ima
             List<String> tags = Arrays.asList(source.getTags().split(","));
             for (String tagName : tags) {
                 Tag tag = stringToTagConverter.convert(tagName);
-                tag.getImages().add(image);
+                //tag.getImages().add(image);
                 image.getTags().add(tag);
             }
         }
