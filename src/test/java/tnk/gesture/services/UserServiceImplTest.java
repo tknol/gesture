@@ -49,7 +49,7 @@ public class UserServiceImplTest {
 
         when(userRepository.findById(anyLong())).thenReturn(recipeOptional);
 
-        User recipeReturned = userService.findById("abc");
+        User recipeReturned = userService.findById("1");
 
         assertNotNull("Null user returned", recipeReturned);
         verify(userRepository, times(1)).findById(anyLong());

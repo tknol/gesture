@@ -32,9 +32,9 @@ public class ImageRepositoryTest {
 
     @Test
     public void findByName() {
-        Optional<Image> uomOptional = imageRepository.findByName("one");
+        Optional<Image> image = imageRepository.findByName("one");
 
-        assertEquals("one", uomOptional.get().getName());
+        assertEquals("one", image.get().getName());
 
     }
 
