@@ -1,7 +1,5 @@
 package tnk.gesture.bootstrap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -9,15 +7,18 @@ import tnk.gesture.model.Image;
 import tnk.gesture.model.Tag;
 import tnk.gesture.model.User;
 import tnk.gesture.repositories.ImageRepository;
-import tnk.gesture.repositories.TagRepository;
 import tnk.gesture.repositories.UserRepository;
 
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    @Autowired private UserRepository userRepository;
-        @Autowired private TagRepository tagRepository;
-    @Autowired private ImageRepository imageRepository;
+    private UserRepository userRepository;
+    private ImageRepository imageRepository;
+
+    public DevBootstrap(UserRepository userRepository, ImageRepository imageRepository) {
+        this.userRepository = userRepository;
+        this.imageRepository = imageRepository;
+    }
 
     public void initData(){
 
@@ -43,8 +44,8 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         //user.getImages().add(two);
 
         userRepository.save(user);
-//        imageRepository.save(one);
-//        imageRepository.save(two);
+        imageRepository.save(one);
+        imageRepository.save(two);
 //        tagRepository.save(figure);
 //        tagRepository.save(nude);
 
