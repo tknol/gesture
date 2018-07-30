@@ -21,7 +21,7 @@ public class ImageToImageCommandConverter implements Converter<Image, ImageComma
     public ImageCommand convert(Image source) {
         final ImageCommand image = new ImageCommand();
         image.setName(source.getName());
-//        image.setUserId(source.getUser().getId()); //todo not setting user on the image, this is giving mongodb problems (cyclical dependency?)
+        image.setUserId(source.getUser().getId());
         image.setId(source.getId());
         StringBuilder stringBuilder = new StringBuilder();
         Iterator iterator = source.getTags().iterator();

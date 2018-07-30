@@ -1,6 +1,7 @@
 package tnk.gesture.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -35,6 +36,7 @@ public class UserController {
     }
 
     @GetMapping("viewimages")
+    @Transactional
     public String getImages(Model model, final RedirectAttributes redirectAttributes) throws Exception {
         User user = getUser();
         model.addAttribute("user", user);

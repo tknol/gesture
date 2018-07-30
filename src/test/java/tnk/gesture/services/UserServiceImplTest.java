@@ -44,15 +44,15 @@ public class UserServiceImplTest {
     @Test
     public void findById() throws Exception {
         User user = new User();
-        user.setId("abc");
+        user.setId(1L);
         Optional<User> recipeOptional = Optional.of(user);
 
-        when(userRepository.findById(anyString())).thenReturn(recipeOptional);
+        when(userRepository.findById(anyLong())).thenReturn(recipeOptional);
 
-        User recipeReturned = userService.findById("abc");
+        User recipeReturned = userService.findById("1");
 
         assertNotNull("Null user returned", recipeReturned);
-        verify(userRepository, times(1)).findById(anyString());
+        verify(userRepository, times(1)).findById(anyLong());
         verify(userRepository, never()).findAll();
     }
 }
