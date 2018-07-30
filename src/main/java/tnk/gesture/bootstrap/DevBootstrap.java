@@ -30,21 +30,21 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         user.setFirstName("Tom");
         user.setLastName("Knol");
 
-//        Image one = new Image("one");
-//        Image two = new Image("two");
-//        Tag figure = new Tag();
-//        figure.setName("figure");
-//        Tag nude = new Tag();
-//        nude.setName("nude");
-//        user.getTags().add(figure);
-//        user.getTags().add(nude);
-//        one.getTags().add(figure);
-//        one.getTags().add(nude);
-//        two.getTags().add(figure);
-//
-//
-//        user.getImages().add(one);
-//        user.getImages().add(two);
+        Image one = new Image("one");
+        Image two = new Image("two");
+        Tag figure = new Tag();
+        figure.setName("figure");
+        Tag nude = new Tag();
+        nude.setName("nude");
+        user.getTags().add(figure);
+        user.getTags().add(nude);
+        one.getTags().add(figure);
+        one.getTags().add(nude);
+        two.getTags().add(figure);
+
+
+        user.getImages().add(one);
+        user.getImages().add(two);
 
         userRepository.save(user);
 //        imageRepository.save(one);
