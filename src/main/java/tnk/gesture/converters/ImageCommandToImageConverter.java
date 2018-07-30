@@ -26,11 +26,13 @@ public class ImageCommandToImageConverter implements Converter<ImageCommand, Ima
     public Image convert(ImageCommand source) {
         final Image image = new Image();
         image.setName(source.getName());
+        image.setUser(source.getUser());
         if(!source.getTags().isEmpty()) {
             List<String> tags = Arrays.asList(source.getTags().split(","));
             for (String tagName : tags) {
                 Tag tag = stringToTagConverter.convert(tagName);
-                //tag.getImages().add(image);
+                tag.getImages().add(image);
+                tag.setUser(source.getUser());
                 image.getTags().add(tag);
             }
         }

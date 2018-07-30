@@ -1,56 +1,45 @@
 package tnk.gesture.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Document
+@EqualsAndHashCode(exclude = {"tags", "user"})
 public class Image {
 
     @Id
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long id;
 
     private String name;
-    private String path;
+    @Lob
     private Byte[] imageData;
+
+    @ManyToOne
     private User user;
+
+    @ManyToMany(mappedBy = "images", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Tag> tags = new HashSet<>();
 
     public Image(){
     }
 
-    public Image(String name, String path){
+    public Image(String name){
         this.name = name;
-        this.path = path;
     }
 
-    public Image(String name, String path, Set<Tag> tags){
+    public Image(String name, Set<Tag> tags){
         this.name = name;
-        this.path = path;
         this.tags = tags;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Image image = (Image) o;
-        return Objects.equals(id, image.id);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id);
     }
 
     @Override
@@ -58,24 +47,7 @@ public class Image {
         return "Image{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", path='" + path + '\'' +
                 ", tags=" + tags +
                 '}';
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Byte[] getImageData() {
-        return imageData;
-    }
-
-    public void setImageData(Byte[] imageData) {
-        this.imageData = imageData;
     }
 }

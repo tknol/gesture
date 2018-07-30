@@ -7,9 +7,9 @@ import tnk.gesture.model.Image;
 public interface ImageService {
 
     Iterable<Image> findAll();
-    void saveImageFile(String id, MultipartFile file);
+    void saveImageFile(Long id, MultipartFile file);
 
     ImageCommand saveImage(ImageCommand imageCommand, MultipartFile file);
 
-    ImageCommand findById(String id) throws Exception;
+    ImageCommand findById(Long id) throws Exception;
 }

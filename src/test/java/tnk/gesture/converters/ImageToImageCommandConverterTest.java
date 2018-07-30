@@ -21,7 +21,7 @@ public class ImageToImageCommandConverterTest {
     public void convert() {
 
         Image source = new Image();
-        source.setId("abc");
+        source.setId(1L);
         Tag tag1 = new Tag();
         tag1.setName("tag1");
         source.getTags().add(tag1);

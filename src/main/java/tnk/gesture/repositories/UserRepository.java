@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 import tnk.gesture.model.User;
 
 @Component
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }

@@ -38,7 +38,7 @@ public class ImageController {
     public String createImage(@PathVariable String userId, Model model) {
 
         ImageCommand imageCommand = new ImageCommand();
-        imageCommand.setUserId(userId);
+        imageCommand.setUserId(Long.valueOf(userId));
 
         model.addAttribute("image", imageCommand);
 
@@ -55,7 +55,7 @@ public class ImageController {
 
     @GetMapping("{id}/image")
     public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws Exception {
-        ImageCommand recipeCommand = imageService.findById(id);
+        ImageCommand recipeCommand = imageService.findById(Long.valueOf(id));
 
         if (recipeCommand.getImageData() != null) {
             byte[] byteArray = new byte[recipeCommand.getImageData().length];
