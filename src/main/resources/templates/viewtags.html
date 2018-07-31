@@ -14,38 +14,7 @@
     <title>Tags</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Gesture</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="practice">Practice</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="viewimages">Images</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="viewschedules">Schedules</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="viewtags">Tags</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about">About</a>
-            </li>
-        </ul>
-        <div class="panel-heading">
-            <small class="text-muted" th:text="${user.userName}"> You are logged in as User Name!</small>
-        </div>
-    </div>
-</nav>
+<nav th:replace="fragments/navbar :: navbar('tags')">Navbar</nav>
 
 </body>
 </html>
