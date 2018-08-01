@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String id) throws Exception {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(Long.valueOf(id));
         if (!user.isPresent()) {
-            throw new Exception("Recipe Not Found! For ID value: " + id);
+            throw new Exception("User Not Found! For ID value: " + id);
         }
         return user.get();
     }

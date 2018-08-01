@@ -1,43 +1,40 @@
 package tnk.gesture.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Document
+@EqualsAndHashCode(exclude = {"user", "images"})
 public class Tag {
 
     @Id
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long id;
 
     private String name;
+
+    @ManyToOne
     private User user;
-    private Set<Image> images = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "image_tag", joinColumns = @JoinColumn(name = "tag_id"), inverseJoinColumns = @JoinColumn(name="image_id"))
+    private Set<Image> images  = new HashSet<>();
 
     public Tag(){
-        this.images = new HashSet<>();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tag tag = (Tag) o;
-        return Objects.equals(id, tag.id);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id);
+    public Tag(String tagName){
+        this.name = tagName;
     }
 
     @Override
@@ -47,13 +44,5 @@ public class Tag {
                 ", name='" + name + '\'' +
                 ", images=" + images +
                 '}';
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

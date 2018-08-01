@@ -40,11 +40,11 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public void saveImageFile(String imageId, MultipartFile file) {
+    public void saveImageFile(Long imageId, MultipartFile file) {
 
         try {
 
-            Image image = imageRepository.findById(imageId).get();
+            Image image = imageRepository.findById(Long.valueOf(imageId)).get();
 
             Byte[] byteObjects = new Byte[file.getBytes().length];
 
@@ -70,8 +70,9 @@ public class ImageServiceImpl implements ImageService {
     public ImageCommand saveImage(ImageCommand imageCommand, MultipartFile file) {
 
         try {
-            Image image = imageCommandToImageConverter.convert(imageCommand);
             User user = userRepository.findById(imageCommand.getUserId()).get();
+            imageCommand.setUser(user);
+            Image image = imageCommandToImageConverter.convert(imageCommand);
 
             Byte[] byteObjects = new Byte[file.getBytes().length];
 
@@ -80,12 +81,10 @@ public class ImageServiceImpl implements ImageService {
             for (byte b : file.getBytes()){
                 byteObjects[i++] = b;
             }
-
             image.setImageData(byteObjects);
 
-            user.getImages().add(image);
-            userRepository.save(user);
-            //image.setUser(user);
+            //user.getImages().add(image);
+            //userRepository.save(user);
             imageRepository.save(image);
         } catch (IOException e) {
             //todo handle better
@@ -98,8 +97,8 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ImageCommand findById(String id) throws Exception {
-        Optional<Image> image = imageRepository.findById(id);
+    public ImageCommand findById(Long id) throws Exception {
+        Optional<Image> image = imageRepository.findById(Long.valueOf(id));
 
         if(!image.isPresent())
             throw new Exception("Image not found"); //todo need better handling

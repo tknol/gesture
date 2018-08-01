@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -43,7 +44,7 @@ public class ImageServiceImplTest {
     public void saveImageFile() throws IOException {
 
         //given
-        String id = "abc";
+        Long id = 1L;
         MultipartFile multipartFile = new MockMultipartFile("imagefile", "testing.txt", "text/plain",
                 "whatever".getBytes());
 
@@ -51,7 +52,7 @@ public class ImageServiceImplTest {
         image.setId(id);
         Optional<Image> imageOptional = Optional.of(image);
 
-        when(imageRepository.findById(anyString())).thenReturn(imageOptional);
+        when(imageRepository.findById(anyLong())).thenReturn(imageOptional);
 
         ArgumentCaptor<Image> argumentCaptor = ArgumentCaptor.forClass(Image.class);
 

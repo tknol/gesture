@@ -1,28 +1,32 @@
 package tnk.gesture.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Document
+@EqualsAndHashCode(exclude = {"images", "tags"})
 public class User {
-
-    @Id
-    private String id = UUID.randomUUID().toString();
     private String userName;
     private String firstName;
     private String lastName;
     private String password;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER) //todo keeping images on the user is impractical
     private Set<Image> images;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Tag> tags;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long id;
 
     public User() {
         images = new HashSet<>();

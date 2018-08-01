@@ -67,12 +67,12 @@ public class ImageControllerTest {
     public void createImage() throws Exception {
         //given
         ImageCommand imageCommand = new ImageCommand();
-        imageCommand.setId("abc");
+        imageCommand.setId(1L);
         User user = new User();
-        user.setId("abc");
+        user.setId(1L);
 
         //when
-        String result = imageController.createImage(user.getId(), model);
+        String result = imageController.createImage(user.getId().toString(), model);
 
         //then
         assertEquals("imageform", result);
