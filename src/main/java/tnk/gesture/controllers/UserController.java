@@ -1,6 +1,5 @@
 package tnk.gesture.controllers;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +7,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tnk.gesture.model.User;
 import tnk.gesture.services.UserService;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 @SessionAttributes("user") //todo i haven't decided the best way to do this yet.
 public class UserController {
 

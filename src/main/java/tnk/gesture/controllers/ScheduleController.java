@@ -2,12 +2,11 @@ package tnk.gesture.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import tnk.gesture.model.User;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class ScheduleController {
 
     @GetMapping({"viewschedules", "schedule/viewschedules"})

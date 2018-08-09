@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tnk.gesture.commands.ImageCommand;
 import tnk.gesture.constants.Mappings;
+import tnk.gesture.model.Image;
 import tnk.gesture.model.User;
 import tnk.gesture.services.ImageService;
 import tnk.gesture.services.UserService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Collection;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class ImageController {
 
     private ImageService imageService;
@@ -25,13 +28,14 @@ public class ImageController {
     }
 
     @GetMapping("/" + Mappings.IMAGES)
-    public String getImages(@ModelAttribute("user") final User user,
-                            final BindingResult mapping1BindingResult,
-                            final Model model){
+    public Iterable<Image> getImages(@ModelAttribute("user") final User user,
+                                       final BindingResult mapping1BindingResult,
+                                       final Model model){
 
-        model.addAttribute("user", user);
+        return imageService.findAll();
+       // model.addAttribute("user", user);
 
-        return Mappings.IMAGES;
+        //return Mappings.IMAGES;
     }
 
     @GetMapping("{userId}/image/new")
