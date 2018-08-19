@@ -17,16 +17,15 @@ import static org.junit.Assert.*;
 @DataJpaTest
 public class ImageRepositoryTest {
 
-    @Autowired ImageRepository imageRepository;
+    @Autowired private ImageRepository imageRepository;
     @Autowired private UserRepository userRepository;
-    @Autowired TagRepository tagRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         imageRepository.deleteAll();
 
-        DevBootstrap devBootstrap = new DevBootstrap(userRepository, imageRepository, tagRepository);
+        DevBootstrap devBootstrap = new DevBootstrap(userRepository);
 
         devBootstrap.onApplicationEvent(null);
     }
