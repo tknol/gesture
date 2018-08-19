@@ -22,6 +22,8 @@ public class User {
     private Set<Image> images;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Tag> tags;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Schedule> schedules;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -31,5 +33,6 @@ public class User {
     public User() {
         images = new HashSet<>();
         tags = new HashSet<>();
+        schedules = new HashSet<>();
     }
 }
