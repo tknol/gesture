@@ -7,6 +7,18 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar('schedules')">Navbar</nav>
-
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-sm" th:each="schedule : ${user.schedules}">
+                <h4 class="card-title" th:text="${schedule.name}">Schedule Name</h4>
+                <span th:each="item : ${schedule.scheduleItems}">
+                    <span th:text="${item}">items</span>
+                </span>
+                <!--<span th:each="tag : ${schedule.tags}">-->
+                    <!--<span th:text="${tag.name}">tag1 tag2 tag3</span>-->
+                <!--</span>-->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
