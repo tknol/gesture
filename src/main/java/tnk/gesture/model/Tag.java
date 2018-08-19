@@ -7,13 +7,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"user", "images"})
+@EqualsAndHashCode(exclude = {"user", "images", "schedules"})
 public class Tag {
 
     @Id
@@ -26,9 +25,13 @@ public class Tag {
     @ManyToOne
     private User user;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "image_tag", joinColumns = @JoinColumn(name = "tag_id"), inverseJoinColumns = @JoinColumn(name="image_id"))
     private Set<Image> images  = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedule_tag", joinColumns = @JoinColumn(name = "tag_id"), inverseJoinColumns = @JoinColumn(name="schedule_id"))
+    private Set<Schedule> schedules  = new HashSet<>();
 
     public Tag(){
     }
