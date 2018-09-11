@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import tnk.gesture.constants.Mappings;
 import tnk.gesture.model.User;
 import tnk.gesture.services.UserService;
 
@@ -35,7 +36,7 @@ public class UserController {
         return all.iterator().next();
     }
 
-    @GetMapping("viewimages")
+    @GetMapping(Mappings.VIEW_IMAGES)
     @Transactional
     public String getImages(Model model, final RedirectAttributes redirectAttributes) throws Exception {
         User user = getUser();

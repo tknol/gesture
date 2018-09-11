@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import tnk.gesture.constants.Mappings;
 import tnk.gesture.model.User;
 
 @Controller
@@ -14,13 +15,13 @@ public class ScheduleController {
     public String viewSchedules(@SessionAttribute("user") User user,
                                 Model model){
         model.addAttribute("user", user);
-        return "viewschedules";
+        return Mappings.VIEW_SCHEDULES;
     }
 
     @GetMapping({"newschedule"})
     public String newSchedule(@SessionAttribute("user") User user,
                               Model model){
         model.addAttribute("user", user);
-        return "newschedule";
+        return Mappings.NEW_SCHEDULE;
     }
 }
