@@ -30,6 +30,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         user.setUserName("tnk");
         user.setFirstName("Tom");
         user.setLastName("Knol");
+        user.setEmail("entertheuser@gmail.com");
 
         Image imageOneWomanFace = new Image("Woman Face");
         byte[] face = getBytes("images\\woman_face.jpg");

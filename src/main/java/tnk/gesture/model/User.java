@@ -18,6 +18,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private String email;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER) //todo keeping images on the user is impractical
     private Set<Image> images;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
