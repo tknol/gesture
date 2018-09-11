@@ -10,7 +10,7 @@
 
     <test name="Bank Manager Login Test">
         <classes>
-            <class name="tnk.gesture.testcases.LoginTest" />
+            <class name="tnk.gesture.testcases.IndexTest" />
         </classes>
     </test> <!-- Test -->
 
