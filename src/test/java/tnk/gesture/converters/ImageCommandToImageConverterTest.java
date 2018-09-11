@@ -2,17 +2,10 @@ package tnk.gesture.converters;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import tnk.gesture.commands.ImageCommand;
 import tnk.gesture.model.Image;
-import tnk.gesture.model.Tag;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
 
 public class ImageCommandToImageConverterTest {
 
