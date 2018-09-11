@@ -78,4 +78,9 @@ public class ImageServiceImplTest {
         verify(imageRepository, times(1)).findAll();
 
     }
+
+    @Test
+    public void testSaveImage(){
+        //TODO implement this
+    }
 }
