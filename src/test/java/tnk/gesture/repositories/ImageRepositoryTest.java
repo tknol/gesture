@@ -1,6 +1,5 @@
 package tnk.gesture.repositories;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +7,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tnk.gesture.bootstrap.DevBootstrap;
 import tnk.gesture.model.Image;
+import tnk.gesture.model.Tag;
 
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -32,15 +33,21 @@ public class ImageRepositoryTest {
 
     @Test
     public void findByName() {
-        Optional<Image> image = imageRepository.findByName("one");
+        String figure = "Figure";
+        List<Image> image = imageRepository.findByName(figure);
 
-        assertEquals("one", image.get().getName());
+        assertEquals(figure, image.get(0).getName());
 
     }
 
     @Test
-    @Ignore
     public void findByTagName(){
-        //imageRepository.findByTags()
+        HashSet<Tag> tags = new HashSet<>();
+        Tag figure = new Tag("figure");
+        figure.setId(1L);
+        tags.add(figure);
+        Iterable<Image> results = imageRepository.findByTag(tags);
+
+        assertTrue("Expected a result but there was none.", results.iterator().hasNext());
     }
 }
